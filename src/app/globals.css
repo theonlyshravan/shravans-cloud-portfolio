@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Shadcn Baseline Colors - Dark Theme Focus */
+  --color-background: #0D1117;
+  --color-foreground: #E0E0E0;
+
+  --color-card: #161B22;
+  --color-card-foreground: #E0E0E0;
+
+  --color-popover: #161B22;
+  --color-popover-foreground: #E0E0E0;
+
+  --color-primary: #00FFC6; /* Accent Primary - Teal */
+  --color-primary-foreground: #0D1117;
+
+  --color-secondary: #FF6B6B; /* Accent Secondary - Coral */
+  --color-secondary-foreground: #0D1117;
+
+  --color-muted: #8B949E;
+  --color-muted-foreground: #E0E0E0;
+
+  --color-accent: #21262D; /* Hover State */
+  --color-accent-foreground: #E0E0E0;
+
+  --color-destructive: #FF6B6B; /* Coral */
+  --color-destructive-foreground: #0D1117;
+
+  --color-border: #30363D;
+  --color-input: #30363D;
+  --color-ring: #00FFC6; /* Accent Primary - Teal */
+
+  /* Chart colors - Example, adjust as needed */
+  --color-chart-1: #00FFC6;
+  --color-chart-2: #FF6B6B;
+  --color-chart-3: #8B949E;
+  --color-chart-4: #E0E0E0;
+  --color-chart-5: #30363D;
+
+  /* No explicit sidebar in design, setting to match card/background for consistency */
+  --color-sidebar: #161B22;
+  --color-sidebar-foreground: #E0E0E0;
+  --color-sidebar-primary: #00FFC6;
+  --color-sidebar-primary-foreground: #0D1117;
+  --color-sidebar-accent: #21262D;
+  --color-sidebar-accent-foreground: #E0E0E0;
+  --color-sidebar-border: #30363D;
+  --color-sidebar-ring: #00FFC6;
+
+  /* Light Theme Variables - Off-white backgrounds */
+  --color-light-background: #FAFAFA;
+  --color-light-foreground: #1A1A1A;
+  --color-light-card: #F5F5F5;
+  --color-light-card-foreground: #1A1A1A;
+  --color-light-popover: #F8F8F8;
+  --color-light-popover-foreground: #1A1A1A;
+  --color-light-muted: #6B7280;
+  --color-light-muted-foreground: #374151;
+  --color-light-accent: #F3F4F6;
+  --color-light-accent-foreground: #1F2937;
+  --color-light-border: #E5E7EB;
+  --color-light-input: #F9FAFB;
+
+  /* Font Families */
+  --font-display: "Inter", system-ui, Arial, Helvetica, sans-serif;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Shadcn Radius Variables */
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+
+  /* Shadcn Animation Variables */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  /* Custom Design System Colors */
+  --color-text-secondary: #8B949E; /* Subtitles/metadata */
+  --color-glow-primary: #00FFC6; /* For glowing effects, matching accent primary */
+  --color-glow-secondary: #FF6B6B; /* For glowing effects, matching accent secondary */
+  --color-github-dark: #0D1117; /* Explicitly storing for reference (same as background) */
+}
+
+/* Light theme styles */
+.dark {
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+  --card: var(--color-card);
+  --card-foreground: var(--color-card-foreground);
+  --popover: var(--color-popover);
+  --popover-foreground: var(--color-popover-foreground);
+  --muted: var(--color-muted);
+  --muted-foreground: var(--color-muted-foreground);
+  --accent: var(--color-accent);
+  --accent-foreground: var(--color-accent-foreground);
+  --border: var(--color-border);
+  --input: var(--color-input);
+}
+
+/* Light theme overrides - off-white backgrounds */
+:root:not(.dark) {
+  --background: var(--color-light-background);
+  --foreground: var(--color-light-foreground);
+  --card: var(--color-light-card);
+  --card-foreground: var(--color-light-card-foreground);
+  --popover: var(--color-light-popover);
+  --popover-foreground: var(--color-light-popover-foreground);
+  --muted: var(--color-light-muted);
+  --muted-foreground: var(--color-light-muted-foreground);
+  --accent: var(--color-light-accent);
+  --accent-foreground: var(--color-light-accent-foreground);
+  --border: var(--color-light-border);
+  --input: var(--color-light-input);
+  
+  /* Keep primary colors the same but adjust for better contrast on light backgrounds */
+  --primary: #00D4AA; /* Slightly darker teal for better contrast */
+  --primary-foreground: #F5F5F5;
+  --secondary: #E55555; /* Slightly darker coral for better contrast */
+  --secondary-foreground: #F5F5F5;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom cursor */
+  body {
+    cursor: none;
+  }
+
+  /* Interactive elements get pointer cursor */
+  button, a, input, textarea, select {
+    cursor: pointer;
+  }
+
+  /* Text selection colors */
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-card);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+  }
+
+  /* Ripple effect for buttons */
+  .ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: var(--color-primary);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .ripple:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@layer utilities {
+  /* Custom cursor glow effect */
+  .cursor-glow {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+
+  /* Gradient text utilities */
+  .text-gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    backdrop-filter: blur(10px);
+    background: rgba(22, 27, 34, 0.8);
+    border: 1px solid rgba(48, 54, 61, 0.5);
+  }
+
+  /* Animated gradient border */
+  .animated-border {
+    position: relative;
+    background: var(--color-card);
+    border-radius: 8px;
+  }
+
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: border-rotate 3s linear infinite;
+  }
+
+  @keyframes border-rotate {
+    0% {
+      background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+    }
+    25% {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+    }
+    50% {
+      background: linear-gradient(225deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+    }
+    75% {
+      background: linear-gradient(315deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+    }
+    100% {
+      background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --background: var(--color-background);
+    --foreground: var(--color-foreground);
+    --card: var(--color-card);
+    --card-foreground: var(--color-card-foreground);
+    --popover: var(--color-popover);
+    --popover-foreground: var(--color-popover-foreground);
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-primary-foreground);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: var(--color-secondary-foreground);
+    --muted: var(--color-muted);
+    --muted-foreground: var(--color-muted-foreground);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-accent-foreground);
+    --destructive: var(--color-destructive);
+    --destructive-foreground: var(--color-destructive-foreground);
+    --border: var(--color-border);
+    --input: var(--color-input);
+    --ring: var(--color-ring);
+    --chart-1: var(--color-chart-1);
+    --chart-2: var(--color-chart-2);
+    --chart-3: var(--color-chart-3);
+    --chart-4: var(--color-chart-4);
+    --chart-5: var(--color-chart-5);
+  }
+}
